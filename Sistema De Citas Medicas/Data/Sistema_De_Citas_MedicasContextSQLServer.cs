@@ -13,4 +13,12 @@ using Sistema_De_Citas_Medicas.Models;
         }
 
         public DbSet<Sistema_De_Citas_Medicas.Models.Medico> Medico { get; set; } = default!;
+
+public DbSet<Sistema_De_Citas_Medicas.Models.Paciente> Paciente { get; set; } = default!;
+
+public DbSet<Sistema_De_Citas_Medicas.Models.HistorialMedico> HistorialMedico { get; set; } = default!;
+
+public DbSet<Sistema_De_Citas_Medicas.Models.Cita> Cita { get; set; } = default!;
+
+public DbSet<Sistema_De_Citas_Medicas.Models.Usuario> Usuario { get; set; } = default!;
     }
