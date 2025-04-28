@@ -16,12 +16,16 @@ namespace Sistema_De_Citas_Medicas.Models
         [StringLength(20)]
         public string Estado { get; set; } = "Pendiente"; // Pendiente, Atendida, Cancelada
 
-        [ForeignKey("Paciente")]
+        [Required]
         public int PacienteId { get; set; }
-        public Paciente Paciente { get; set; }
 
-        [ForeignKey("Medico")]
+        [ForeignKey("PacienteId")]
+        public Paciente? Paciente { get; set; }
+
+        [Required]
         public int MedicoId { get; set; }
-        public Medico Medico { get; set; }
+
+        [ForeignKey("MedicoId")]
+        public Medico? Medico { get; set; }
     }
 }

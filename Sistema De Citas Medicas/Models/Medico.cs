@@ -15,8 +15,11 @@ namespace Sistema_De_Citas_Medicas.Models
         [Required]
         public string Consultorio { get; set; }
 
-        [ForeignKey("Usuario")]
+        [Required]
         public int UsuarioId { get; set; }
-        public Usuario Usuario { get; set; }
+
+        [ForeignKey("UsuarioId")]
+        
+        public Usuario? Usuario { get; set; }
     }
 }

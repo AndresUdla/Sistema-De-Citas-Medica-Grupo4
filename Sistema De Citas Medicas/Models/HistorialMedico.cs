@@ -16,8 +16,10 @@ namespace Sistema_De_Citas_Medicas.Models
 
         public string Observaciones { get; set; }
 
-        [ForeignKey("Cita")]
+        [Required]
         public int CitaId { get; set; }
-        public Cita Cita { get; set; }
+
+        [ForeignKey("CitaId")]
+        public Cita? Cita { get; set; }
     }
 }
