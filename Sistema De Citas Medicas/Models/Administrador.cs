@@ -17,9 +17,10 @@ namespace Sistema_De_Citas_Medicas.Models
         public string Telefono { get; set; }
 
         [Required]
-        [ForeignKey("Usuario")]
         public int UsuarioId { get; set; }
 
+        [ForeignKey("UsuarioId")]
         public Usuario Usuario { get; set; }
+
     }
 }

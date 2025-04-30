@@ -9,9 +9,20 @@ namespace Sistema_De_Citas_Medicas.Models
         public int Id { get; set; }
 
         [Required]
-        public string Direccion { get; set; }
+        [StringLength(100)]
+        public string Nombres { get; set; }
 
         [Required]
+        [StringLength(100)]
+        public string Apellidos { get; set; }
+
+        [Required]
+        [StringLength(10)]
+        public string Cedula { get; set; }
+
+        [StringLength(200)]
+        public string Direccion { get; set; }
+
         [Phone]
         public string Telefono { get; set; }
 
@@ -19,6 +30,6 @@ namespace Sistema_De_Citas_Medicas.Models
         public int UsuarioId { get; set; }
 
         [ForeignKey("UsuarioId")]
-        public Usuario? Usuario { get; set; }
+        public Usuario Usuario { get; set; }
     }
 }
