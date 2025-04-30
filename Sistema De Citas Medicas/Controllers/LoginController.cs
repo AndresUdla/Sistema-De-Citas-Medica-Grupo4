@@ -1,40 +1,49 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Sistema_De_Citas_Medicas.Models;
+using Sistema_De_Citas_Medicas.Data; // Asegúrate que esta sea tu ruta real
+using System.Linq;
 
 namespace Sistema_De_Citas_Medicas.Controllers
 {
-    public class AccountController : Controller
+    public class LoginController : Controller
     {
+        private readonly Sistema_De_Citas_MedicasContextSQLServer _context;
+
+        public LoginController(Sistema_De_Citas_MedicasContextSQLServer context)
+        {
+            _context = context;
+        }
+
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Login(LoginViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                // Aquí puedes validar las credenciales del usuario
-                // Ejemplo: Buscar en la base de datos
-                var usuario = /* Lógica para buscar el usuario en la base de datos */;
-                if (usuario != null && usuario.Contrasena == model.Contrasena)
-                {
-                    // Autenticar al usuario
-                    return RedirectToAction("Index", "Home");
-                }
+            if (!ModelState.IsValid)
+                return View(model);
 
-                ModelState.AddModelError(string.Empty, "Correo o contraseña incorrectos.");
+            var usuario = _context.Usuario.FirstOrDefault(u =>
+                u.Correo == model.Email &&  
+                u.Contrasena == model.Password &&  
+                u.Rol.ToString().ToLower() == model.Rol.ToLower());  
+
+            if (usuario != null)
+            {
+                if (usuario.Rol == RolUsuario.Paciente)
+                    return RedirectToAction("Dashboard", "Paciente");
+                else if (usuario.Rol == RolUsuario.Medico)
+                    return RedirectToAction("Dashboard", "Medico");
+                else if (usuario.Rol == RolUsuario.Administrador)
+                    return RedirectToAction("Dashboard", "Administrador");
             }
 
+            ModelState.AddModelError("", "Correo, clave o rol incorrectos.");
             return View(model);
         }
 
-        public IActionResult Logout()
-        {
-            // Lógica para cerrar sesión
-            return RedirectToAction("Login");
-        }
     }
 }

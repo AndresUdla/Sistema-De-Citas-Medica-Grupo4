@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Sistema_De_Citas_Medicas.Data;
 using Sistema_De_Citas_Medicas.Models;
 
 namespace Sistema_De_Citas_Medicas.Controllers

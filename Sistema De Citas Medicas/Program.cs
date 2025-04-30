@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Sistema_De_Citas_Medicas.Data;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<Sistema_De_Citas_MedicasContextSQLServer>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Sistema_De_Citas_MedicasContextSQLServer") ?? throw new InvalidOperationException("Connection string 'Sistema_De_Citas_MedicasContextSQLServer' not found.")));
@@ -26,7 +27,8 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Account}/{action=Login}/{id?}");
+    pattern: "{controller=Login}/{action=Login}/{id?}");
+
 
 
 app.Run();
