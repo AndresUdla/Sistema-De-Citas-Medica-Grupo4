@@ -21,4 +21,6 @@ public DbSet<Sistema_De_Citas_Medicas.Models.Medico> Medico { get; set; } = defa
 public DbSet<Sistema_De_Citas_Medicas.Models.Paciente> Paciente { get; set; } = default!;
 
 public DbSet<Sistema_De_Citas_Medicas.Models.Horario> Horario { get; set; } = default!;
+
+public DbSet<Sistema_De_Citas_Medicas.Models.Cita> Cita { get; set; } = default!;
     }
