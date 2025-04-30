@@ -46,8 +46,16 @@ namespace Sistema_De_Citas_Medicas.Controllers
         // GET: Usuarios/Create
         public IActionResult Create()
         {
+            ViewBag.Roles = Enum.GetValues(typeof(RolUsuario))
+                                .Cast<RolUsuario>()
+                                .Select(r => new SelectListItem
+                                {
+                                    Value = r.ToString(),
+                                    Text = r.ToString()
+                                }).ToList();
             return View();
         }
+
 
         // POST: Usuarios/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
