@@ -9,32 +9,29 @@ namespace Sistema_De_Citas_Medicas.Models
         [Key]
         public int CitaId { get; set; }
 
-        // Fecha y hora de la cita
-        [Required]
+        [Required(ErrorMessage = "La fecha de la cita es obligatoria.")]
+        [DataType(DataType.DateTime, ErrorMessage = "La fecha de la cita debe ser válida.")]
         public DateTime FechaCita { get; set; }
 
-        // Foreign Key hacia Paciente
-        [Required]
+        [Required(ErrorMessage = "El ID del paciente es obligatorio.")]
         public int PacienteId { get; set; }
 
         [ForeignKey("PacienteId")]
         public Paciente Paciente { get; set; }
 
-        // Foreign Key hacia Medico
-        [Required]
+        [Required(ErrorMessage = "El ID del médico es obligatorio.")]
         public int MedicoId { get; set; }
 
         [ForeignKey("MedicoId")]
         public Medico Medico { get; set; }
 
-        // Foreign Key hacia Horario
-        [Required]
+        [Required(ErrorMessage = "El ID del horario es obligatorio.")]
         public int HorarioId { get; set; }
 
         [ForeignKey("HorarioId")]
         public Horario Horario { get; set; }
 
-        // Fecha de creación de la cita
+        // Fecha en la que se creó la cita (no requerida al crear manualmente)
         public DateTime FechaCreacion { get; set; } = DateTime.Now;
     }
 }

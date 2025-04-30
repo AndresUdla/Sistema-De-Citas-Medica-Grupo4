@@ -20,9 +20,7 @@ namespace Sistema_De_Citas_Medicas.Models
         [DataType(DataType.Time)]
         public TimeSpan HoraFin { get; set; }
 
-        // Puedes eliminar esta línea si no necesitas la fecha de creación
-        // public DateTime FechaCreacion { get; set; } = DateTime.Now;
-
+ 
         [Required(ErrorMessage = "El ID del médico es obligatorio.")]
         public int MedicoId { get; set; }
 
