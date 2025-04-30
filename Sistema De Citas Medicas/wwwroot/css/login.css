@@ -28,8 +28,18 @@ body::before {
     padding: 20px;
 }
 
-h2 {
+/* Estilo para las etiquetas */
+label {
+    font-weight: bold;
     color: #333333;
+    margin-bottom: 5px;
+}
+
+/* Estilo para el título */
+h2 {
+    color: #28a745; /* Verde para el título */
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
 /* Estilo para los campos de texto */
