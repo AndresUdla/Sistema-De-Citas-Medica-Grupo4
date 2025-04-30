@@ -1,53 +1,38 @@
 ﻿@model IEnumerable<Sistema_De_Citas_Medicas.Models.Horario>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Horarios";
+    Layout = "~/Views/Shared/LayaoutMedico.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Horarios</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Crear Nuevo Horario</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Dia)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HoraInicio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HoraFin)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Medico)
-            </th>
+            <th>@Html.DisplayNameFor(model => model.Dia)</th>
+            <th>@Html.DisplayNameFor(model => model.HoraInicio)</th>
+            <th>@Html.DisplayNameFor(model => model.HoraFin)</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Dia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HoraInicio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HoraFin)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Medico.Especialidad)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.HorarioId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.HorarioId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.HorarioId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Dia)</td>
+                <td>@Html.DisplayFor(modelItem => item.HoraInicio)</td>
+                <td>@Html.DisplayFor(modelItem => item.HoraFin)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.HorarioId">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.HorarioId">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.HorarioId">Eliminar</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
