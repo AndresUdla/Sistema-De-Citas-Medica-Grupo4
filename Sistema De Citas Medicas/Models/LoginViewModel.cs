@@ -5,10 +5,10 @@ namespace Sistema_De_Citas_Medicas.Models
     public class LoginViewModel
     {
         [Required]
-        public string Email { get; set; }
+        public string Correo { get; set; }
 
         [Required]
-        public string Password { get; set; }
+        public string Contraseña { get; set; }
 
         [Required]
         public string Rol { get; set; }

@@ -27,7 +27,7 @@ namespace Sistema_De_Citas_Medicas.Models
         [Required(ErrorMessage = "El rol es obligatorio.")]
         public RolUsuario Rol { get; set; } // Ej: "Administrador", "Medico", "Paciente"
 
-        // Relaciones uno a uno (opcional si no está asignado aún)
+        
         public Administrador? Administrador { get; set; }
         public Medico? Medico { get; set; }
         public Paciente? Paciente { get; set; }

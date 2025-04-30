@@ -8,25 +8,25 @@
 <div class="container mt-4" style="max-width: 400px;">
     <form asp-action="Login" method="post">
         <div class="form-group mb-3">
-            <label asp-for="Email"></label>
-            <input asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
+            <label asp-for="Correo"></label>
+            <input asp-for="Correo" class="form-control" />
+            <span asp-validation-for="Correo" class="text-danger"></span>
         </div>
 
         <div class="form-group mb-3">
-            <label asp-for="Password"></label>
-            <input asp-for="Password" class="form-control" />
-            <span asp-validation-for="Password" class="text-danger"></span>
+            <label asp-for="Contraseña"></label>
+            <input asp-for="Contraseña" class="form-control" />
+            <span asp-validation-for="Contraseña" class="text-danger"></span>
         </div>
 
         <div class="form-group mb-3">
             <label asp-for="Rol">Rol</label>
             <select asp-for="Rol" class="form-control">
-                <option value="">Seleccione un rol</option>
-                <option value="paciente">Paciente</option>
-                <option value="medico">Médico</option>
-                <option value="administrador">Administrador</option>
+                <option value="Administrador">Administrador</option>
+                <option value="Medico">Medico</option>
+                <option value="Paciente">Paciente</option>
             </select>
+
             <span asp-validation-for="Rol" class="text-danger"></span>
         </div>
 

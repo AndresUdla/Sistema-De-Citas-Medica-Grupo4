@@ -17,7 +17,7 @@ namespace Sistema_De_Citas_Medicas.Data
                 context.Usuario.Add(new Usuario
                 {
                     Correo = "admin@ejemplo.com",
-                    Contrasena = "password123", // ¡Recuerda que en producción nunca debes usar contraseñas en texto plano!
+                    Contrasena = "password123", 
                     Rol = RolUsuario.Administrador
                 });
 

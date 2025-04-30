@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Sistema_De_Citas_Medicas.Models;
-using Sistema_De_Citas_Medicas.Data; // Asegúrate que esta sea tu ruta real
+using Sistema_De_Citas_Medicas.Data;
+using System;
 using System.Linq;
 
 namespace Sistema_De_Citas_Medicas.Controllers
@@ -26,24 +27,31 @@ namespace Sistema_De_Citas_Medicas.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
+            // Intentar convertir el string a enum
+            if (!Enum.TryParse<RolUsuario>(model.Rol, true, out var rolEnum))
+            {
+                ModelState.AddModelError("", "Rol inválido.");
+                return View(model);
+            }
+
             var usuario = _context.Usuario.FirstOrDefault(u =>
-                u.Correo == model.Email &&  
-                u.Contrasena == model.Password &&  
-                u.Rol.ToString().ToLower() == model.Rol.ToLower());  
+                u.Correo == model.Correo &&
+                u.Contrasena == model.Contraseña &&
+                u.Rol == rolEnum);
 
             if (usuario != null)
             {
-                if (usuario.Rol == RolUsuario.Paciente)
-                    return RedirectToAction("Dashboard", "Paciente");
-                else if (usuario.Rol == RolUsuario.Medico)
-                    return RedirectToAction("Dashboard", "Medico");
-                else if (usuario.Rol == RolUsuario.Administrador)
-                    return RedirectToAction("Dashboard", "Administrador");
+                return rolEnum switch
+                {
+                    RolUsuario.Paciente => RedirectToAction("Index", "Paciente"),
+                    RolUsuario.Medico => RedirectToAction("Index", "Medico"),
+                    RolUsuario.Administrador => RedirectToAction("Index", "Administrador"),
+                    _ => View(model)
+                };
             }
 
             ModelState.AddModelError("", "Correo, clave o rol incorrectos.");
             return View(model);
         }
-
     }
 }
