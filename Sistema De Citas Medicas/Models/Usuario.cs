@@ -6,22 +6,24 @@ namespace Sistema_De_Citas_Medicas.Models
     public class Usuario
     {
         [Key]
-        public int Id { get; set; }
+        public int UsuarioId { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string NombreCompleto { get; set; }
-
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "El correo es obligatorio.")]
+        [EmailAddress(ErrorMessage = "Debe ser un correo válido.")]
+        [StringLength(100)]
         public string Correo { get; set; }
 
-        [Required]
-        [DataType(DataType.Password)]
-        public string Contraseña { get; set; }
+        [Required(ErrorMessage = "La contraseña es obligatoria.")]
+        [StringLength(100, MinimumLength = 6, ErrorMessage = "La contraseña debe tener al menos 6 caracteres.")]
+        public string Contrasena { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "El rol es obligatorio.")]
         [StringLength(20)]
-        public string Rol { get; set; } // "Paciente" o "Medico"
+        public string Rol { get; set; } // Ej: "Administrador", "Medico", "Paciente"
+
+        // Relaciones uno a uno (opcional si no está asignado aún)
+        public Administrador? Administrador { get; set; }
+        public Medico? Medico { get; set; }
+        public Paciente? Paciente { get; set; }
     }
 }

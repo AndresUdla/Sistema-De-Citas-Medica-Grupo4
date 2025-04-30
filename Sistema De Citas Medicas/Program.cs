@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<Sistema_De_Citas_MedicasContextSQLServer>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Sistema_De_Citas_MedicasContextSQLServer") ?? throw new InvalidOperationException("Connection string 'Sistema_De_Citas_MedicasContextSQLServer' not found.")));
+﻿var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
