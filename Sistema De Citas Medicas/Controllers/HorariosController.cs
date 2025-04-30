@@ -22,8 +22,9 @@ namespace Sistema_De_Citas_Medicas.Controllers
         // GET: Horarios
         public async Task<IActionResult> Index()
         {
-            var sistema_De_Citas_MedicasContextSQLServer = _context.Horario.Include(h => h.Medico);
-            return View(await sistema_De_Citas_MedicasContextSQLServer.ToListAsync());
+            ViewData["ActiveTab"] = "Horarios";
+            var horarios = _context.Horario.Include(h => h.Medico);
+            return View(await horarios.ToListAsync());
         }
 
         // GET: Horarios/Details/5

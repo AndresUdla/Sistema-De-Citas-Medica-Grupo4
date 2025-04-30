@@ -22,9 +22,11 @@ namespace Sistema_De_Citas_Medicas.Controllers
         // GET: Citas
         public async Task<IActionResult> Index()
         {
-            var sistema_De_Citas_MedicasContextSQLServer = _context.Cita.Include(c => c.Horario).Include(c => c.Medico).Include(c => c.Paciente);
-            return View(await sistema_De_Citas_MedicasContextSQLServer.ToListAsync());
+            ViewData["ActiveTab"] = "Citas";
+            var citas = _context.Cita.Include(c => c.Horario).Include(c => c.Medico).Include(c => c.Paciente);
+            return View(await citas.ToListAsync());
         }
+
 
         // GET: Citas/Details/5
         public async Task<IActionResult> Details(int? id)

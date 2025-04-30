@@ -44,7 +44,7 @@ namespace Sistema_De_Citas_Medicas.Controllers
                 return rolEnum switch
                 {
                     RolUsuario.Administrador => RedirectToAction("Index", "Usuarios"),
-                    RolUsuario.Medico => RedirectToAction("Index", "Medicos"),
+                    RolUsuario.Medico => RedirectToAction("Index", "Horarios"),
                     RolUsuario.Paciente => RedirectToAction("Index", "Pacientes"),
                     _ => View(model)
                 };
