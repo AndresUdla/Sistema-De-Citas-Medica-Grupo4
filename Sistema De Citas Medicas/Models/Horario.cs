@@ -9,25 +9,25 @@ namespace Sistema_De_Citas_Medicas.Models
         [Key]
         public int HorarioId { get; set; }
 
-        [Required]
-        public DayOfWeek Dia { get; set; } // Día de la semana (lunes, martes, etc.)
+        [Required(ErrorMessage = "El día de la semana es obligatorio.")]
+        public DayOfWeek Dia { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "La hora de inicio es obligatoria.")]
         [DataType(DataType.Time)]
-        public TimeSpan HoraInicio { get; set; } // Hora de inicio del turno
+        public TimeSpan HoraInicio { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "La hora de fin es obligatoria.")]
         [DataType(DataType.Time)]
-        public TimeSpan HoraFin { get; set; } // Hora de fin del turno
+        public TimeSpan HoraFin { get; set; }
 
-        // Fecha de creación del horario
-        public DateTime FechaCreacion { get; set; } = DateTime.Now;
+        // Puedes eliminar esta línea si no necesitas la fecha de creación
+        // public DateTime FechaCreacion { get; set; } = DateTime.Now;
 
-        // Foreign Key hacia Medico
-        [Required]
+        [Required(ErrorMessage = "El ID del médico es obligatorio.")]
         public int MedicoId { get; set; }
 
         [ForeignKey("MedicoId")]
         public Medico Medico { get; set; }
     }
 }
+
