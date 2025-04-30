@@ -32,6 +32,20 @@ h2 {
     color: #333333;
 }
 
+/* Estilo para los campos de texto */
+.form-control {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #28a745; /* Color verde al enfocar */
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5); /* Sombra verde */
+    outline: none;
+}
 /* Estilo personalizado para el botón */
 .btn-primary {
     background-color: #28a745; /* Cambia el color a verde */
