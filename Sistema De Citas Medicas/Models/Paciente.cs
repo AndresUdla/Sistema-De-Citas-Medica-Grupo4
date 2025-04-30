@@ -6,7 +6,7 @@ namespace Sistema_De_Citas_Medicas.Models
     public class Paciente
     {
         [Key]
-        public int Id { get; set; }
+        public int PacienteId { get; set; }
 
         [Required]
         [StringLength(100)]

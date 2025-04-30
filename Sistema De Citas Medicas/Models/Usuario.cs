@@ -3,6 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sistema_De_Citas_Medicas.Models
 {
+    public enum RolUsuario
+    {
+        Administrador,
+        Medico,
+        Paciente
+    }
+
     public class Usuario
     {
         [Key]
@@ -18,8 +25,7 @@ namespace Sistema_De_Citas_Medicas.Models
         public string Contrasena { get; set; }
 
         [Required(ErrorMessage = "El rol es obligatorio.")]
-        [StringLength(20)]
-        public string Rol { get; set; } // Ej: "Administrador", "Medico", "Paciente"
+        public RolUsuario Rol { get; set; } // Ej: "Administrador", "Medico", "Paciente"
 
         // Relaciones uno a uno (opcional si no está asignado aún)
         public Administrador? Administrador { get; set; }
