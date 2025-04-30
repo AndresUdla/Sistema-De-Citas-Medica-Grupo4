@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Sistema_De_Citas_Medicas.Models.Cita>
+
+@{
+    ViewData["Title"] = "Mis Citas";
+    Layout = "~/Views/Shared/LayaoutPaciente.cshtml";
+}
+
+<h1>Mis Citas Agendadas</h1>
+
+<div>
+    <a asp-action="Create" class="btn btn-primary mb-3">Agendar Nueva Cita</a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.First().FechaCita)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Medico.Nombre)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Horario.Dia)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Horario.HoraInicio)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Horario.HoraFin)</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cita in Model)
+        {
+            <tr>
+                <td>@cita.FechaCita.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@cita.Medico?.Nombre</td>
+                <td>@cita.Horario?.Dia</td>
+                <td>@cita.Horario?.HoraInicio</td>
+                <td>@cita.Horario?.HoraFin</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@cita.CitaId" class="btn btn-info btn-sm">Detalles</a>
+                    <a asp-action="Edit" asp-route-id="@cita.CitaId" class="btn btn-warning btn-sm">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@cita.CitaId" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

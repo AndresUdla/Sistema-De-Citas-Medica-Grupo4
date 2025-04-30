@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Sistema_De_Citas_Medicas.Models.Cita>
+
+@{
+    ViewData["Title"] = "Citas - Administrador";
+    Layout = "~/Views/Shared/LayaoutAdministrador.cshtml";
+}
+
+<h1>Lista de Citas Agendadas</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.First().FechaCita)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Paciente.Nombres)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Paciente.Apellidos)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Medico.Nombre)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Horario.Dia)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Horario.HoraInicio)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Horario.HoraFin)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cita in Model)
+        {
+            <tr>
+                <td>@cita.FechaCita.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@cita.Paciente?.Nombres</td>
+                <td>@cita.Paciente?.Apellidos</td>
+                <td>@cita.Medico?.Nombre</td>
+                <td>@cita.Horario?.Dia</td>
+                <td>@cita.Horario?.HoraInicio</td>
+                <td>@cita.Horario?.HoraFin</td>
+            </tr>
+        }
+    </tbody>
+</table>

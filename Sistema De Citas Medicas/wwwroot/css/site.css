@@ -2,6 +2,46 @@ html {
   font-size: 14px;
 }
 
+/* General styles for all layouts */
+.navbar-brand {
+    margin-left: 15px; /* Add margin to the left of the title */
+    font-weight: bold;
+}
+
+/* Styles for Paciente layout */
+.layout-paciente .navbar {
+    background: linear-gradient(90deg, #a8e063, #56ab2f); /* Green gradient */
+    color: #ffffff;
+}
+
+.layout-paciente .footer {
+    background: linear-gradient(90deg, #a8e063, #56ab2f); /* Green gradient */
+    color: #ffffff;
+}
+
+/* Styles for Medico layout */
+.layout-medico .navbar {
+    background: linear-gradient(90deg, #36d1dc, #5b86e5); /* Blue gradient */
+    color: #ffffff;
+}
+
+.layout-medico .footer {
+    background: linear-gradient(90deg, #36d1dc, #5b86e5); /* Blue gradient */
+    color: #ffffff;
+}
+
+/* Styles for Administrador layout */
+.layout-administrador .navbar {
+    background: linear-gradient(90deg, #ff7e5f, #feb47b); /* Orange gradient */
+    color: #ffffff;
+}
+
+.layout-administrador .footer {
+    background: linear-gradient(90deg, #ff7e5f, #feb47b); /* Orange gradient */
+    color: #ffffff;
+}
+
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;

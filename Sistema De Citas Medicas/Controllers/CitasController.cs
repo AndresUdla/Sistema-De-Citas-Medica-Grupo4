@@ -19,14 +19,35 @@ namespace Sistema_De_Citas_Medicas.Controllers
             _context = context;
         }
 
-        // GET: Citas
-        public async Task<IActionResult> Index()
+        // GET: Citas/IndexCitaAdministrador
+        public async Task<IActionResult> IndexCitaAdministrador()
         {
             ViewData["ActiveTab"] = "Citas";
             var citas = _context.Cita.Include(c => c.Horario).Include(c => c.Medico).Include(c => c.Paciente);
-            return View(await citas.ToListAsync());
+            return View("IndexCitaAdministrador", await citas.ToListAsync());
         }
 
+        // GET: Citas/IndexCitaMedico
+        public async Task<IActionResult> IndexCitaMedico()
+        {
+            ViewData["ActiveTab"] = "Citas";
+            var medicoId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "MedicoId")?.Value ?? "0");
+            var citas = _context.Cita.Where(c => c.MedicoId == medicoId)
+                                     .Include(c => c.Horario)
+                                     .Include(c => c.Paciente);
+            return View("IndexCitaMedico", await citas.ToListAsync());
+        }
+
+        // GET: Citas/IndexCitaPaciente
+        public async Task<IActionResult> IndexCitaPaciente()
+        {
+            ViewData["ActiveTab"] = "Citas";
+            var pacienteId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "PacienteId")?.Value ?? "0");
+            var citas = _context.Cita.Where(c => c.PacienteId == pacienteId)
+                                     .Include(c => c.Horario)
+                                     .Include(c => c.Medico);
+            return View("IndexCitaPaciente", await citas.ToListAsync());
+        }
 
         // GET: Citas/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -59,8 +80,6 @@ namespace Sistema_De_Citas_Medicas.Controllers
         }
 
         // POST: Citas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CitaId,FechaCita,PacienteId,MedicoId,HorarioId,FechaCreacion")] Cita cita)
@@ -97,8 +116,6 @@ namespace Sistema_De_Citas_Medicas.Controllers
         }
 
         // POST: Citas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CitaId,FechaCita,PacienteId,MedicoId,HorarioId,FechaCreacion")] Cita cita)

@@ -45,7 +45,7 @@ namespace Sistema_De_Citas_Medicas.Controllers
                 {
                     RolUsuario.Administrador => RedirectToAction("Index", "Usuarios"),
                     RolUsuario.Medico => RedirectToAction("Index", "Horarios"),
-                    RolUsuario.Paciente => RedirectToAction("Index", "Pacientes"),
+                    RolUsuario.Paciente => RedirectToAction("IndexCitaPaciente", "Citas"),
                     _ => View(model)
                 };
             }
