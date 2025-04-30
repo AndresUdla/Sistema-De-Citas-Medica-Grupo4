@@ -17,4 +17,6 @@ using Sistema_De_Citas_Medicas.Models;
 public DbSet<Sistema_De_Citas_Medicas.Models.Administrador> Administrador { get; set; } = default!;
 
 public DbSet<Sistema_De_Citas_Medicas.Models.Medico> Medico { get; set; } = default!;
+
+public DbSet<Sistema_De_Citas_Medicas.Models.Paciente> Paciente { get; set; } = default!;
     }
