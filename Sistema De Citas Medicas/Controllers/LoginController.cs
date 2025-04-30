@@ -43,12 +43,13 @@ namespace Sistema_De_Citas_Medicas.Controllers
             {
                 return rolEnum switch
                 {
-                    RolUsuario.Paciente => RedirectToAction("Index", "Paciente"),
-                    RolUsuario.Medico => RedirectToAction("Index", "Medico"),
-                    RolUsuario.Administrador => RedirectToAction("Index", "Administrador"),
+                    RolUsuario.Administrador => RedirectToAction("Index", "Administradores"),
+                    RolUsuario.Medico => RedirectToAction("Index", "Medicos"),
+                    RolUsuario.Paciente => RedirectToAction("Index", "Pacientes"),
                     _ => View(model)
                 };
             }
+
 
             ModelState.AddModelError("", "Correo, clave o rol incorrectos.");
             return View(model);
