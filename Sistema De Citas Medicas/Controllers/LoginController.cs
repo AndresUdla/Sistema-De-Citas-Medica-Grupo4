@@ -42,7 +42,7 @@ namespace Sistema_De_Citas_Medicas.Controllers
             if (usuario != null)
             {
                 return rolEnum switch
-                {s
+                {
                     RolUsuario.Administrador => RedirectToAction("Index", "Usuarios"),
                     RolUsuario.Medico => RedirectToAction("Index", "Medicos"),
                     RolUsuario.Paciente => RedirectToAction("Index", "Pacientes"),
