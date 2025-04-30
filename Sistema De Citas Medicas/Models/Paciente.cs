@@ -42,7 +42,7 @@ namespace Sistema_De_Citas_Medicas.Models
         public int UsuarioId { get; set; }
 
         [ForeignKey("UsuarioId")]
-        public Usuario Usuario { get; set; }
+        public Usuario? Usuario { get; set; }
 
         public ICollection<Cita> Citas { get; set; }
 

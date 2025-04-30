@@ -19,12 +19,11 @@ namespace Sistema_De_Citas_Medicas.Models
         [Required(ErrorMessage = "La hora de fin es obligatoria.")]
         [DataType(DataType.Time)]
         public TimeSpan HoraFin { get; set; }
- 
+
         [Required(ErrorMessage = "El ID del médico es obligatorio.")]
         public int MedicoId { get; set; }
 
         [ForeignKey("MedicoId")]
-        public Medico Medico { get; set; }
+        public Medico? Medico { get; set; }
     }
 }
-

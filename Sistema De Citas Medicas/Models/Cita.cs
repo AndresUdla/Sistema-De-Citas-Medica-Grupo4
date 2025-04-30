@@ -17,19 +17,19 @@ namespace Sistema_De_Citas_Medicas.Models
         public int PacienteId { get; set; }
 
         [ForeignKey("PacienteId")]
-        public Paciente Paciente { get; set; }
+        public Paciente? Paciente { get; set; }
 
         [Required(ErrorMessage = "El ID del médico es obligatorio.")]
         public int MedicoId { get; set; }
 
         [ForeignKey("MedicoId")]
-        public Medico Medico { get; set; }
+        public Medico? Medico { get; set; }
 
         [Required(ErrorMessage = "El ID del horario es obligatorio.")]
         public int HorarioId { get; set; }
 
         [ForeignKey("HorarioId")]
-        public Horario Horario { get; set; }
+        public Horario? Horario { get; set; }
 
         // Fecha en la que se creó la cita (no requerida al crear manualmente)
         public DateTime FechaCreacion { get; set; } = DateTime.Now;

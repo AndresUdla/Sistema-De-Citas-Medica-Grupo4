@@ -47,7 +47,7 @@ namespace Sistema_De_Citas_Medicas.Controllers
         // GET: Administradores/Create
         public IActionResult Create()
         {
-            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "UsuarioId", "Contrasena");
+            ViewData["UsuarioId"] = new SelectList(_context.Set<Usuario>(), "UsuarioId", "Contrasena");
             return View();
         }
 
@@ -64,7 +64,7 @@ namespace Sistema_De_Citas_Medicas.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "UsuarioId", "Contrasena", administrador.UsuarioId);
+            ViewData["UsuarioId"] = new SelectList(_context.Set<Usuario>(), "UsuarioId", "Contrasena", administrador.UsuarioId);
             return View(administrador);
         }
 
@@ -81,7 +81,7 @@ namespace Sistema_De_Citas_Medicas.Controllers
             {
                 return NotFound();
             }
-            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "UsuarioId", "Contrasena", administrador.UsuarioId);
+            ViewData["UsuarioId"] = new SelectList(_context.Set<Usuario>(), "UsuarioId", "Contrasena", administrador.UsuarioId);
             return View(administrador);
         }
 
@@ -117,7 +117,7 @@ namespace Sistema_De_Citas_Medicas.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "UsuarioId", "Contrasena", administrador.UsuarioId);
+            ViewData["UsuarioId"] = new SelectList(_context.Set<Usuario>(), "UsuarioId", "Contrasena", administrador.UsuarioId);
             return View(administrador);
         }
 

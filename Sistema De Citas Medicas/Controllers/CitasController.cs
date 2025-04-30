@@ -49,9 +49,9 @@ namespace Sistema_De_Citas_Medicas.Controllers
         // GET: Citas/Create
         public IActionResult Create()
         {
-            ViewData["HorarioId"] = new SelectList(_context.Horario, "HorarioId", "HorarioId");
-            ViewData["MedicoId"] = new SelectList(_context.Medico, "MedicoId", "Especialidad");
-            ViewData["PacienteId"] = new SelectList(_context.Paciente, "PacienteId", "Apellidos");
+            ViewData["HorarioId"] = new SelectList(_context.Set<Horario>(), "HorarioId", "HorarioId");
+            ViewData["MedicoId"] = new SelectList(_context.Set<Medico>(), "MedicoId", "Especialidad");
+            ViewData["PacienteId"] = new SelectList(_context.Set<Paciente>(), "PacienteId", "Apellidos");
             return View();
         }
 
@@ -68,9 +68,9 @@ namespace Sistema_De_Citas_Medicas.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["HorarioId"] = new SelectList(_context.Horario, "HorarioId", "HorarioId", cita.HorarioId);
-            ViewData["MedicoId"] = new SelectList(_context.Medico, "MedicoId", "Especialidad", cita.MedicoId);
-            ViewData["PacienteId"] = new SelectList(_context.Paciente, "PacienteId", "Apellidos", cita.PacienteId);
+            ViewData["HorarioId"] = new SelectList(_context.Set<Horario>(), "HorarioId", "HorarioId", cita.HorarioId);
+            ViewData["MedicoId"] = new SelectList(_context.Set<Medico>(), "MedicoId", "Especialidad", cita.MedicoId);
+            ViewData["PacienteId"] = new SelectList(_context.Set<Paciente>(), "PacienteId", "Apellidos", cita.PacienteId);
             return View(cita);
         }
 
@@ -87,9 +87,9 @@ namespace Sistema_De_Citas_Medicas.Controllers
             {
                 return NotFound();
             }
-            ViewData["HorarioId"] = new SelectList(_context.Horario, "HorarioId", "HorarioId", cita.HorarioId);
-            ViewData["MedicoId"] = new SelectList(_context.Medico, "MedicoId", "Especialidad", cita.MedicoId);
-            ViewData["PacienteId"] = new SelectList(_context.Paciente, "PacienteId", "Apellidos", cita.PacienteId);
+            ViewData["HorarioId"] = new SelectList(_context.Set<Horario>(), "HorarioId", "HorarioId", cita.HorarioId);
+            ViewData["MedicoId"] = new SelectList(_context.Set<Medico>(), "MedicoId", "Especialidad", cita.MedicoId);
+            ViewData["PacienteId"] = new SelectList(_context.Set<Paciente>(), "PacienteId", "Apellidos", cita.PacienteId);
             return View(cita);
         }
 
@@ -125,9 +125,9 @@ namespace Sistema_De_Citas_Medicas.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["HorarioId"] = new SelectList(_context.Horario, "HorarioId", "HorarioId", cita.HorarioId);
-            ViewData["MedicoId"] = new SelectList(_context.Medico, "MedicoId", "Especialidad", cita.MedicoId);
-            ViewData["PacienteId"] = new SelectList(_context.Paciente, "PacienteId", "Apellidos", cita.PacienteId);
+            ViewData["HorarioId"] = new SelectList(_context.Set<Horario>(), "HorarioId", "HorarioId", cita.HorarioId);
+            ViewData["MedicoId"] = new SelectList(_context.Set<Medico>(), "MedicoId", "Especialidad", cita.MedicoId);
+            ViewData["PacienteId"] = new SelectList(_context.Set<Paciente>(), "PacienteId", "Apellidos", cita.PacienteId);
             return View(cita);
         }
 
