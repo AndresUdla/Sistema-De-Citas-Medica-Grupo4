@@ -20,10 +20,10 @@ namespace Sistema_De_Citas_Medicas.Controllers
         }
 
         // GET: Pacientes
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var sistema_De_Citas_MedicasContextSQLServer = _context.Paciente.Include(p => p.Usuario);
-            return View(await sistema_De_Citas_MedicasContextSQLServer.ToListAsync());
+            var pacientes = _context.Paciente.Include(p => p.Usuario).ToList();
+            return View(pacientes);
         }
 
         // GET: Pacientes/Details/5
@@ -37,6 +37,7 @@ namespace Sistema_De_Citas_Medicas.Controllers
             var paciente = await _context.Paciente
                 .Include(p => p.Usuario)
                 .FirstOrDefaultAsync(m => m.PacienteId == id);
+
             if (paciente == null)
             {
                 return NotFound();
@@ -48,26 +49,58 @@ namespace Sistema_De_Citas_Medicas.Controllers
         // GET: Pacientes/Create
         public IActionResult Create()
         {
-            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "UsuarioId", "Contrasena");
+            ViewBag.UsuarioId = new SelectList(
+                _context.Usuario
+                    .Where(u => u.Rol == RolUsuario.Paciente) // Filtrar solo usuarios con rol "Paciente"
+                    .Select(u => new { u.UsuarioId }), // Solo mostrar el UsuarioId
+                "UsuarioId", // Valor del select
+                "UsuarioId" // Texto visible en el select
+            );
+
             return View();
         }
 
         // POST: Pacientes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PacienteId,Nombres,Apellidos,Cedula,Edad,Altura,Peso,Direccion,Telefono,UsuarioId")] Paciente paciente)
+        public IActionResult Create(Paciente paciente)
         {
+            // Validar que el UsuarioId corresponde a un usuario con rol "Paciente"
+            if (!_context.Usuario.Any(u => u.UsuarioId == paciente.UsuarioId && u.Rol == RolUsuario.Paciente))
+            {
+                ModelState.AddModelError("UsuarioId", "El Usuario seleccionado no es válido para un Paciente.");
+            }
+
             if (ModelState.IsValid)
             {
-                _context.Add(paciente);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    _context.Paciente.Add(paciente);
+                    _context.SaveChanges();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError(string.Empty, "Ocurrió un error al guardar el paciente: " + ex.Message);
+                }
             }
-            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "UsuarioId", "Contrasena", paciente.UsuarioId);
+
+            // Volver a llenar el ViewBag en caso de error
+            ViewBag.UsuarioId = new SelectList(
+                _context.Usuario
+                    .Where(u => u.Rol == RolUsuario.Paciente)
+                    .Select(u => new { u.UsuarioId }),
+                "UsuarioId",
+                "UsuarioId",
+                paciente?.UsuarioId
+            );
+
             return View(paciente);
         }
+
+
+
+
 
         // GET: Pacientes/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -82,13 +115,20 @@ namespace Sistema_De_Citas_Medicas.Controllers
             {
                 return NotFound();
             }
-            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "UsuarioId", "Contrasena", paciente.UsuarioId);
+
+            ViewBag.UsuarioId = new SelectList(
+                _context.Usuario
+                    .Where(u => u.Rol == RolUsuario.Paciente)
+                    .Select(u => new { u.UsuarioId, u.Correo }),
+                "UsuarioId",
+                "Correo",
+                paciente.UsuarioId
+            );
+
             return View(paciente);
         }
 
         // POST: Pacientes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("PacienteId,Nombres,Apellidos,Cedula,Edad,Altura,Peso,Direccion,Telefono,UsuarioId")] Paciente paciente)
@@ -118,7 +158,17 @@ namespace Sistema_De_Citas_Medicas.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "UsuarioId", "Contrasena", paciente.UsuarioId);
+
+            ViewBag.UsuarioId = new SelectList(
+                _context.Usuario
+                    .Where(u => u.Rol == RolUsuario.Paciente)
+                    .Select(u => new { u.UsuarioId, u.Correo }),
+                "UsuarioId",
+                "Correo",
+                paciente?.UsuarioId
+            );
+
+
             return View(paciente);
         }
 
@@ -133,6 +183,7 @@ namespace Sistema_De_Citas_Medicas.Controllers
             var paciente = await _context.Paciente
                 .Include(p => p.Usuario)
                 .FirstOrDefaultAsync(m => m.PacienteId == id);
+
             if (paciente == null)
             {
                 return NotFound();
@@ -150,9 +201,9 @@ namespace Sistema_De_Citas_Medicas.Controllers
             if (paciente != null)
             {
                 _context.Paciente.Remove(paciente);
+                await _context.SaveChangesAsync();
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

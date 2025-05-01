@@ -16,8 +16,8 @@ namespace Sistema_De_Citas_Medicas.Data
                 // Crear un nuevo usuario administrador
                 context.Usuario.Add(new Usuario
                 {
-                    Correo = "admin@ejemplo.com",
-                    Contrasena = "password123", 
+                    Correo = "josueadmin@ejemplo.com",
+                    Contrasena = "josuemullo10", 
                     Rol = RolUsuario.Administrador
                 });
 

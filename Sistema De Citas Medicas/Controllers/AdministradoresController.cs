@@ -48,7 +48,7 @@ namespace Sistema_De_Citas_Medicas.Controllers
         // GET: Administradores/Create
         public IActionResult Create()
         {
-            ViewData["UsuarioId"] = new SelectList(_context.Set<Usuario>(), "UsuarioId", "Contrasena");
+            ViewData["UsuarioId"] = new SelectList(_context.Set<Usuario>(), "UsuarioId", "Correo");
             return View();
         }
 

@@ -12,6 +12,7 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
 </head>
 <body>
     <div class="container mt-5" style="max-width: 400px;">
@@ -25,7 +26,12 @@
 
             <div class="form-group mb-3">
                 <label asp-for="Contraseña"></label>
-                <input asp-for="Contraseña" class="form-control" type="password" placeholder="Ingrese su contraseña" />
+                <div class="input-group">
+                    <input asp-for="Contraseña" class="form-control" type="password" placeholder="Ingrese su contraseña" id="passwordField" />
+                    <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                        <i class="bi bi-eye-slash" id="togglePasswordIcon"></i>
+                    </button>
+                </div>
                 <span asp-validation-for="Contraseña" class="text-danger"></span>
             </div>
 
@@ -46,7 +52,6 @@
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js"></script>
 </body>
 </html>
-
-

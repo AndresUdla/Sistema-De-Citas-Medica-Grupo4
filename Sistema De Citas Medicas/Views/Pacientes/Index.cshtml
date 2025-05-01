@@ -71,8 +71,9 @@
                 @Html.DisplayFor(modelItem => item.Telefono)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Usuario.Contrasena)
+               @Html.DisplayFor(modelItem => item.Usuario.Correo)
             </td>
+
             <td>
                 <a asp-action="Edit" asp-route-id="@item.PacienteId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.PacienteId">Details</a> |
