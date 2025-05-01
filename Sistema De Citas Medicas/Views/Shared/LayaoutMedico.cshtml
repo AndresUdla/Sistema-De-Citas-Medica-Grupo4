@@ -16,7 +16,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" asp-controller="Citas" asp-action="IndexCitaMedico">Mis Citas</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Citas" asp-action="IndexCitaMedico">Citas Asignadas</a></li>
                     <li class="nav-item"><a class="nav-link" asp-controller="Horarios" asp-action="Index">Horarios</a></li>
                     <li class="nav-item"><a class="nav-link" asp-controller="Medicos" asp-action="Details">Mi Perfil</a></li>
                 </ul>
@@ -34,5 +34,7 @@
     <footer class="footer bg-primary text-light text-center py-3">
         &copy; 2025 - Sistema De Citas Médicas - Médico
     </footer>
+    @RenderSection("Scripts", required: false)
+
 </body>
 </html>
