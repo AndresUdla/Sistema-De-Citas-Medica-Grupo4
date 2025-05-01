@@ -1,3 +1,15 @@
+/* Estilo personalizado para los campos de texto */
+.custom-input {
+    border: 2px solid #ced4da;
+    border-radius: 5px;
+    padding: 10px;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.custom-input:focus {
+        border-color: #80bdff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
 html {
   font-size: 14px;
 }
